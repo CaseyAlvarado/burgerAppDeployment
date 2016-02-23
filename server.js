@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose'); 
 
-mongoose.connect('mongodb://localhost/BurgerApp');
+mongoose.connect(process.env.MONGOCONN);
 
 var express = require('express');
 var ingredients = require('./routes/ingredients');
@@ -31,4 +31,4 @@ app.get('/order', order.populateIngredientsGET);
 app.post('/order/addOrderPOST', order.addOrderPOST); 
 app.get('/kitchen', kitchen.populateOrdersGET); 
 app.post('/kitchen/completed', kitchen.updateCompletedPOST); 
-app.listen(2000);
+app.listen(process.env.PORT);
